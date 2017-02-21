@@ -9,6 +9,8 @@ script:
   OWNER=valentinvieriu
   IMAGE_NAME=alpine-node-arm
   QNAME=$OWNER/$IMAGE_NAME
+# prepare qemu
+- docker run --rm --privileged multiarch/qemu-user-static:register --reset
 # build image
 - docker build -t $QNAME:build .
 # test image
