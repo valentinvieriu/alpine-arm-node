@@ -1,0 +1,25 @@
+
+sudo: required
+services:
+- docker
+language: bash
+script:
+#general settings
+- >
+  OWNER=valentinvieriu
+  IMAGE_NAME=alpine-node-arm
+  QNAME=$OWNER/$IMAGE_NAME
+# build image
+- docker build -t $QNAME:build .
+# test image
+- docker run $QNAME:build node --version
+# push image
+- >
+  if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
+    export TAG=$(grep "NODE_VERSION " Dockerfile | sed 's/.*NODE_VERSION //')
+    docker tag $QNAME:build $QNAME:$TAG
+    docker tag $QNAME:build $QNAME:latest
+    docker push $QNAME:$TAG
+    docker push $QNAME:latest
+  fi
