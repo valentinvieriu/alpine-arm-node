@@ -2,7 +2,8 @@
 FROM valentinvieriu/alpine-qemu:3.5
 
 ENV NPM_CONFIG_LOGLEVEL info
-ENV NODE_VERSION 7.6.0
+ARG NODE_VERSION=8.1.2
+ENV NODE_VERSION $NODE_VERSION
 
 RUN adduser -D -u 1000 node \
     && apk add --no-cache \
@@ -28,7 +29,7 @@ RUN adduser -D -u 1000 node \
     C4F0DFFF4E8C1A8236409D08E73BC641CC11F4C8 \
     56730D5401028683275BD23C23EFEFE93C4CFFFE \
   ; do \
-    gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$key"; \
+    gpg --keyserver ipv4.pool.sks-keyservers.net --recv-keys "$key"; \
   done \
     && curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION.tar.xz" \
     && curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc" \

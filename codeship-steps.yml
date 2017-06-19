@@ -1,0 +1,12 @@
+- name: register_qemu
+  tag: master
+  service: register-qemu
+  command: --reset
+- name: push_image
+  tag: master
+  service: node
+  type: push
+  image_name: valentinvieriu/alpine-node-arm
+  image_tag: 8.1.2-{{ .CiName }}-{{ .ServiceName }}-{{ .Timestamp }}
+  registry: https://index.docker.io/v1/
+  encrypted_dockercfg_path: dockercfg.encrypted
