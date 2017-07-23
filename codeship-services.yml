@@ -8,5 +8,4 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        - NODE_VERSION=${NODE_VERSION}
+      args_file: .env
