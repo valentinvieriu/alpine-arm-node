@@ -2,7 +2,7 @@
 FROM valentinvieriu/alpine-qemu:3.5
 
 ENV NPM_CONFIG_LOGLEVEL info
-ARG NODE_VERSION=8.1.2
+ARG NODE_VERSION=8.2.1
 ENV NODE_VERSION $NODE_VERSION
 
 RUN adduser -D -u 1000 node \

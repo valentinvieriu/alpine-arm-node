@@ -1,10 +1,10 @@
-version: '3.1'
+version: '3.3'
 
 services:
   node:
-    image: valentinvieriu/alpine-node-arm:8.1.2
+    image: valentinvieriu/alpine-node-arm:${NODE_VERSION}
     # image: valentinvieriu/alpine-node-arm:latest
     build:
       context: .
       args:
-        - NODE_VERSION=8.1.2
+        - NODE_VERSION=${NODE_VERSION}
